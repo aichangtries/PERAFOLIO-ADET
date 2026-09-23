@@ -1,5 +1,5 @@
 Reflection Journal
-Week of: September 21-27, 2026
+Week of: September 21, 2026
 
 My goal this week
 My goal this week is to stop treating PeraFolio as just a design and start turning it into the actual Flutter project. I want to get the foundation working first, especially the reusable components, navigation, and main screens, instead of changing the design again every time I notice something I could improve.

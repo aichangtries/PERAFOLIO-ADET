@@ -15,9 +15,8 @@ Chrome for the web build
 
 
 Clone and install:
-
-git clone ...
-cd ...
+git clone https://github.com/aichangtries/PERAFOLIO-ADET.git
+cd PERAFOLIO-ADET
 flutter pub get
 
 PeraFolio is planned as a fully local prototype using Hive CE for structured local data. It currently requires no Firebase/Supabase backend or real API keys. If private configuration is added later, real values must remain gitignored and only placeholders should appear here.
@@ -44,19 +43,53 @@ Profile and Settings - Manage simulated personal details, notifications, and pri
 
 5. Project structure
 
-lib/
-├── flutter/lib       # App entry point
-├── models/          # Account, transaction, transfer, payment, etc.
-├── screens/         # Main PeraFolio screens
-├── widgets/         # Reusable UI components
-├── services/        # Local persistence/data logic
-├── theme/           # Colors, typography, spacing, theme
-└── data/            # Fictional seed/demo data, if used
+## Project Structure
+
+```text
+PERAFOLIO-ADET/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+│
+├── components/
+│   └── ui/
+│       └── button.tsx
+│
+├── flutter/
+│   └── lib/
+│       ├── core/
+│       │   └── theme/
+│       │       ├── app_colors.dart
+│       │       └── app_theme.dart
+│       ├── data/
+│       │   └── mock_data.dart
+│       ├── models/
+│       │   └── bank.dart
+│       └── main.dart
+│
+├── lib/
+│   └── utils.ts
+│
+├── project/
+│   ├── AI-USAGE.md
+│   └── documentation.md
+│
+├── public/
+│
+├── .gitignore
+├── components.json
+├── next.config.mjs
+├── package.json
+├── pnpm-lock.yaml
+├── pnpm-workspace.yaml
+├── postcss.config.mjs
+└── tsconfig.json
 
 Replace this map with the exact final lib/ structure before submission.
 
 6. Screenshots
-Refer to this link: 
+Refer to this link: https://github.com/HAU-6ADET/student-6ADET-2125-alessandradagdag/blob/main/project/M7A2-compressed.pdf
 
 7. Known issues and next steps
 
