@@ -5,7 +5,6 @@ import 'data/mock_data.dart';
 import 'models/bank.dart';
 
 const purple = AppColors.purple, purpleDark = AppColors.purpleDark, bg = AppColors.background, surface = AppColors.surface, elevated = AppColors.elevated, ink = AppColors.ink, muted = AppColors.muted, line = AppColors.line, green = AppColors.success, error = AppColors.error;
-
 void main() => runApp(const PeraFolioApp());
 
 class PeraFolioApp extends StatelessWidget { const PeraFolioApp({super.key}); @override Widget build(BuildContext context) => MaterialApp(debugShowCheckedModeBanner:false, theme: AppTheme.dark, home:const Shell()); }
