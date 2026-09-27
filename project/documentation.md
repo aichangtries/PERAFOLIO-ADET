@@ -93,12 +93,13 @@ Refer to this link: https://github.com/HAU-6ADET/student-6ADET-2125-alessandrada
 
 7. Known issues and next steps
 
-Real bank integration and real-money movement are outside the project scope.
-QR/camera scanning is simulated for the web MVP.
-Hive CE persistence still needs to be implemented and verified in the final Flutter build.
-Final navigation, validation, empty states, responsive layout, and overflow behavior must be tested end-to-end.
-Screenshots and this README must be updated to match the finished application.
-Possible future improvements include secure real-provider integration, cloud sync, transaction categorization, budgets/savings goals, and real QR scanning.
+-The Flutter project directory is still being organized and verified.
+-The expected pubspec.yaml file is not currently available in the identified Flutter directory, preventing flutter pub get and flutter run from being executed successfully from that location.
+-Screenshots are temporarily unavailable because of the local Flutter directory/build issue.
+-Real bank integration and real-money movement are outside the project scope.
+-QR/camera scanning is simulated for the flutter MVP.
+-Hive CE persistence still needs to be fully implemented and verified in the final Flutter project.
+-Final navigation, validation, empty states, responsive layouts, and overflow behavior still require end-to-end testing.
 
 AI usage
 AI is used for explanation, debugging, code assistance, and documentation support. Detailed usage is recorded in AI-USAGE.md.
