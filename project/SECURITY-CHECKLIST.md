@@ -26,23 +26,23 @@ No GitHub Actions workflows are present in the repository, so rows 6-12 are N/A.
 
 ## Backend and security rules
 
-This app is a fully local mock prototype with no Firebase, Supabase, Firestore, Storage, or other backend, so rows 13-17 are N/A.
+The app uses Supabase (Auth + Postgres) as its backend when built with keys, and falls back to local Hive CE storage without them. It does not use Firebase, Firestore or Storage.
 
 | # | Check | Yes / No / N/A | Evidence |
 | --- | --- | --- | --- |
-| 13 | Firestore and Storage rules are not left open to anyone; they require an authenticated user | N/A | No Firebase, Firestore, Storage, or security-rules files exist; the app uses in-memory mock data. |
-| 14 | Rules restrict a user to their own documents where that makes sense | N/A | There are no backend documents or user-specific persistence rules in this local prototype. |
-| 15 | If Supabase: Row Level Security is on for every table | N/A | The project does not use Supabase and has no database tables. |
+| 13 | Firestore and Storage rules are not left open to anyone; they require an authenticated user | N/A | No Firebase, Firestore or Storage is used. The Supabase equivalent is row 15: every policy in `supabase/schema.sql` is granted `to authenticated` only. |
+| 14 | Rules restrict a user to their own documents where that makes sense | Yes | Every policy in `supabase/schema.sql` checks `auth.uid() = user_id` (or `= id` for `profiles`) for both reads (`using`) and writes (`with check`). |
+| 15 | If Supabase: Row Level Security is on for every table | Yes | `supabase/schema.sql` runs `enable row level security` on all 7 tables. Confirm in Supabase → Table Editor that no table shows "RLS disabled". |
 | 16 | Firebase and Google API keys are restricted in the Google Cloud console to the APIs and app they are for | N/A | The project does not use Firebase or Google API keys. |
-| 17 | I opened the app signed out and confirmed I could not read or write data I should not | N/A | There is no account system or backend authorization; all displayed data is local, simulated data. |
-| 18 | Seed and sample data is invented, not real people's data | Yes | `flutter/lib/data/mock_data.dart` and `app/page.tsx` use fictional balances, merchants, accounts, transaction IDs, and demo profile information; no real banking data is used. |
+| 17 | I opened the app signed out and confirmed I could not read or write data I should not | To verify | Needs a manual check against the live project: signed out, a REST request with only the publishable key must return no rows from any table, and a second account must not see the first account's data. |
+| 18 | Seed and sample data is invented, not real people's data | Yes | `lib/data/seed_data.dart` uses fictional balances, merchants, accounts, transaction IDs, and demo profile information; no real banking data is used. |
 
 ## Input and app surface
 
 | # | Check | Yes / No / N/A | Evidence |
 | --- | --- | --- | --- |
-| 19 | Input is validated before it is written, not only styled as valid in the UI | No | The web UI sanitizes some fields and checks the verification-code length, but transfer confirmation does not validate amount limits, balance, or all input rules; the Flutter transfer flow can proceed without equivalent validation. |
-| 20 | Nothing secret is recoverable from the built app, since a shipped binary can be unpacked | Yes | The source and tracked assets contain no credentials or private configuration; the app ships only mock account and transaction data. |
+| 19 | Input is validated before it is written, not only styled as valid in the UI | Yes | `AppState.validateTransfer` / `validatePayment` re-check amount, accounts and balance before any Hive write, and `confirmTransfer` / `confirmPayment` refuse invalid input; sign-up, login, personal-details, PIN and verification forms validate in `lib/utils/validators.dart`. Covered by `test/app_state_test.dart`. |
+| 20 | Nothing secret is recoverable from the built app, since a shipped binary can be unpacked | Yes | Only the Supabase URL and publishable key are compiled in (via `--dart-define-from-file=supabase.json`, which is gitignored). Both are public by design; data is protected by RLS, and no secret / `service_role` key is ever used by the app. |
 
 ## Repository and privacy
 
@@ -50,10 +50,10 @@ This app is a fully local mock prototype with no Firebase, Supabase, Firestore, 
 | --- | --- | --- | --- |
 | 21 | No student number, personal email, phone number or home address in the repository or in commit messages | Yes | I searched the repository and commit subjects; no student number, phone number, home address, or real personal email was found. The visible `alessandra@perafolio.app` value is fictional demo profile data. |
 | 22 | No classmate's personal data in the repository | Yes | The repository contains only invented profile, account, merchant, and transaction data; no classmate data was found in files or commit subjects. |
-| 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored | No | The Flutter directory has no `pubspec.yaml`, and the root `.gitignore` does not include Flutter `build/` or `.dart_tool/`; this needs correction before public release. |
-| 24 | Images, fonts and other assets are mine, licensed, or credited | No | The repository contains template/placeholder images in `public/`, but no license or attribution record was found for those assets. |
+| 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored | Yes | `pubspec.yaml` at the repository root uses only pub.dev packages (device_preview, hive_ce, hive_ce_flutter, fl_chart, intl); `.gitignore` contains `/build/` and `.dart_tool/`. |
+| 24 | Images, fonts and other assets are mine, licensed, or credited | Yes | The old template placeholder images were removed with the Next.js scaffold. The PeraFolio logo is drawn in code (`lib/widgets/brand/perafolio_logo.dart`); the only images are Flutter's default web icons in `web/icons/`. |
 | 25 | Repository visibility is deliberate, and I checked it after my last push | No | The `origin` remote points to GitHub, but repository visibility was not independently verified in GitHub after the last push. |
 
 ## Anything I found and fixed
 
-This checklist caught that the root `.gitignore` does not currently cover Flutter's `build/` and `.dart_tool/` directories, and that transfer input validation is incomplete in the prototype. It also identified placeholder assets without an attribution record; these remain follow-up items before making the repository public.
+This checklist caught that `.gitignore` did not cover Flutter's `build/` and `.dart_tool/`, that transfer validation was incomplete, and that the repository held placeholder assets with no attribution. All three were fixed when the project was restructured into a single Flutter project (rows 19, 23 and 24).
