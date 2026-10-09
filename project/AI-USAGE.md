@@ -147,3 +147,17 @@ Before submitting my final project, I will:
 - Compare this document with my final GitHub repository
 - Remove all unfinished placeholders
 - Make sure my README includes the required AI usage credit
+### October 9, 2026
+
+**Task:** Project restructure, device_preview fix, and full Flutter implementation of the M7A2 screens
+
+**AI assistance:**  
+Claude Code (AI) did the following:
+- Moved the leftover Next.js/v0 files out of the repository into `../PERAFOLIO-legacy-backup`.
+- Created the Flutter project at the repository root with `pubspec.yaml`.
+- Migrated `device_preview` to the 3.x API (`DevicePreview.enable()`).
+- Implemented all 21 M7A2 screens and states, the M7A3 components and theme, Hive CE persistence for the M7A1 records, and the fl_chart spending chart.
+- Wrote unit and widget tests.
+
+**My contribution:**  
+[Fill in: what I reviewed, changed, tested, and can explain.]
