@@ -33,8 +33,8 @@ Or open the live app above; no setup is needed.
 
 ## Presentation
 
-- Video (public Google Drive link): https://... [<!-- TODO: add video link -->](https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
-- Slides (link or PDF): [https://... <!-- TODO: add slides link -->](https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
+- Video (public Google Drive link): (https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
+- Slides (link or PDF): (https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
 - Square image: in this folder, or a link. <!-- TODO: add image file or link -->
 
 ## AI usage
