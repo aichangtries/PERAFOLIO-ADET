@@ -34,7 +34,7 @@ Or open the live app above; no setup is needed.
 ## Presentation
 
 - Video (public Google Drive link): (https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
-- Slides (link or PDF): (https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
+- Slides (link or PDF): (https://github.com/aichangtries/PERAFOLIO-ADET/blob/main/assets/brand/PERAFOLIO%20-%20Presentation.pdf)
 - Square image: assets/brand/perafolio_logo.png
 
 ## AI usage
