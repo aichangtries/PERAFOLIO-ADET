@@ -27,7 +27,7 @@ PeraFolio is a Flutter Web personal-finance prototype for people who keep money 
    flutter run -d chrome
    ```
 
-   Log in with `alessandra@perafolio.app` and any password of 6+ characters.
+   (You may also log in with `alessandra@perafolio.app` and any password of 6+ characters.)
 
 Or open the live app above; no setup is needed.
 
