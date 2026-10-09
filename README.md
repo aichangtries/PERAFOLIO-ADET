@@ -35,7 +35,7 @@ Or open the live app above; no setup is needed.
 
 - Video (public Google Drive link): (https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
 - Slides (link or PDF): (https://drive.google.com/drive/folders/1Y9V_1GSOJxEAVDy7LZnyRgalyXkUzHzH?usp=drive_link)
-- Square image: in this folder, or a link. <!-- TODO: add image file or link -->
+- Square image: assets/brand/perafolio_logo.png
 
 ## AI usage
 
