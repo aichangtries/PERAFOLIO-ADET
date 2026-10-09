@@ -36,7 +36,7 @@ The project uses `device_preview` **3.x**, which works differently from the 1.x/
 - It is enabled with one line in `lib/main.dart`: `DevicePreview.enable();`. There is no `DevicePreview(builder: ...)` wrapper, and `MaterialApp` must **not** set `useInheritedMediaQuery`, `locale: DevicePreview.locale(context)` or `builder: DevicePreview.appBuilder`. Those APIs were removed in 3.0, which is why the old setup did not work.
 - The app applies the iPhone 16 preset at startup, so the phone frame appears without any extra tools.
 - To switch devices, rotate, raise the keyboard or change text size, open **Flutter DevTools** (the link `flutter run` prints) and use the **device_preview** tab. The in-app toolbar from 1.x no longer exists.
-- Simulation runs in debug and profile builds (`flutter run`). Release builds (`flutter build web`) switch it off and render the app full-screen.
+- Simulation is forced on with `DevicePreview.enable(enabled: true)`, so release builds (`flutter build web`, e.g. the GitHub Pages deployment) also open inside the phone frame. In release builds the iOS target platform cannot be simulated, so the frame and screen size apply but widgets keep the browser's platform behavior.
 
 ## Features (M7A1 MVP)
 

@@ -13,9 +13,9 @@ import 'state/app_state.dart';
 Future<void> main() async {
   // device_preview 3.x installs its own WidgetsBinding, so it must be
   // enabled before anything else touches the binding (Hive and Supabase included).
-  // It is active in debug/profile builds (`flutter run -d web-server` /
-  // `-d chrome`) and switches itself off in release builds.
-  DevicePreview.enable();
+  // Forced on in every build mode, release included, so the GitHub Pages
+  // deployment also opens inside the phone frame.
+  DevicePreview.enable(enabled: true);
 
   final AppStore storage;
   if (SupabaseConfig.isConfigured) {
