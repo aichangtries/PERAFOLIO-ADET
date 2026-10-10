@@ -51,8 +51,8 @@ The app uses Supabase (Auth + Postgres) as its backend when built with keys, and
 | 21 | No student number, personal email, phone number or home address in the repository or in commit messages | Yes | I searched the repository and commit subjects; no student number, phone number, home address, or real personal email was found. The visible `alessandra@perafolio.app` value is fictional demo profile data. |
 | 22 | No classmate's personal data in the repository | Yes | The repository contains only invented profile, account, merchant, and transaction data; no classmate data was found in files or commit subjects. |
 | 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored | Yes | `pubspec.yaml` at the repository root uses only pub.dev packages (device_preview, hive_ce, hive_ce_flutter, fl_chart, intl); `.gitignore` contains `/build/` and `.dart_tool/`. |
-| 24 | Images, fonts and other assets are mine, licensed, or credited | Yes | The old template placeholder images were removed with the Next.js scaffold. The PeraFolio logo is drawn in code (`lib/widgets/brand/perafolio_logo.dart`); the only images are Flutter's default web icons in `web/icons/`. |
-| 25 | Repository visibility is deliberate, and I checked it after my last push | No | The `origin` remote points to GitHub, but repository visibility was not independently verified in GitHub after the last push. |
+| 24 | Images, fonts and other assets are mine, licensed, or credited | Yes | Logo is personally made in assets. Bank images are replaced with just their colors. Icon images are Flutter's default web icons in `web/icons/`. |
+| 25 | Repository visibility is deliberate, and I checked it after my last push | Yes | The `origin` remote points to GitHub and repository visibility is verified. |
 
 ## Anything I found and fixed
 
