@@ -53,7 +53,3 @@ The app uses Supabase (Auth + Postgres) as its backend when built with keys, and
 | 23 | Dependencies come from pub.dev, and `build/` and `.dart_tool/` are gitignored | Yes | `pubspec.yaml` at the repository root uses only pub.dev packages (device_preview, hive_ce, hive_ce_flutter, fl_chart, intl); `.gitignore` contains `/build/` and `.dart_tool/`. |
 | 24 | Images, fonts and other assets are mine, licensed, or credited | Yes | Logo is personally made in assets. Bank images are replaced with just their colors. Icon images are Flutter's default web icons in `web/icons/`. |
 | 25 | Repository visibility is deliberate, and I checked it after my last push | Yes | The `origin` remote points to GitHub and repository visibility is verified. |
-
-## Anything I found and fixed
-
-This checklist caught that `.gitignore` did not cover Flutter's `build/` and `.dart_tool/`, that transfer validation was incomplete, and that the repository held placeholder assets with no attribution. All three were fixed when the project was restructured into a single Flutter project (rows 19, 23 and 24).
