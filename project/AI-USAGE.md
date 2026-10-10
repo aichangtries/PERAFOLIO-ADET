@@ -193,19 +193,44 @@ AI polished my existing screen code, cross-checked it against the M7A3 component
 **What I changed or learned:**  
 The screens were built on my foundational code, so I reviewed each change against what I had written. I learned how Hive saves each record as a plain map with `toMap()` and `fromMap()`, so no generated adapters are needed, and that on the web Hive stores its boxes in the browser's IndexedDB.
 
-## My Responsibility
+## Where the AI Got It Wrong
 
-Even when I use AI, the final decisions for PeraFolio are still mine. I decide which features belong in the app, how the screens should behave, what changes are worth keeping, and whether AI-generated suggestions actually fit my project.
+### Case 1: The phone frame disappeared on the deployed app
 
-Before I keep AI-assisted code, I should be able to answer:
+**What the AI did:**  
+When AI migrated `device_preview` to the 3.x API, it called `DevicePreview.enable()` with no arguments in `lib/main.dart`. Its comment said this was "active in debug/profile builds and switches itself off in release builds."
 
-1. What does this code do?
-2. Why is it needed in PeraFolio?
-3. What would happen if I removed or changed it?
-4. Can I explain the important widgets, variables, and functions in my own words?
-5. Did I test it myself?
+**What went wrong:**  
+The app looked correct when I ran it locally with `flutter run`, but GitHub Pages serves a release build. On the deployed app, the iPhone frame was gone and the screens stretched across the whole browser window, which did not match my mockup.
 
-If I cannot answer those questions yet, then I consider that part something I still need to understand instead of something I can claim as my own work.
+**How I fixed it:**  
+I changed the call to `DevicePreview.enable(enabled: true)` so the frame stays on in every build mode, release included, and updated the comment to explain why (commit `7f12b97`). I learned that testing only in debug mode is not enough, because a release build can behave differently.
+
+### Case 2: Bugs in the AI-generated web prototype
+
+**What the AI did:**  
+My early web prototype in `app/page.tsx` was generated with v0, an AI tool (the file's metadata says `generator: 'v0.app'`).
+
+**What went wrong:**  
+A code review found three bugs in it:
+
+- The verification code field used `.replace(/\\D/g, '')`. The double backslash makes the pattern look for a literal backslash followed by "D", so letters were never removed from the code field.
+- The Verify button turned on at 4 digits, but the verify function only accepted exactly 6. A 4- or 5-digit code did nothing and showed no message.
+- Transactions used the merchant name as their React `key`, so two transfers to the same account produced duplicate keys.
+
+**How I fixed it:**  
+I did not carry the prototype code into the Flutter app, and the leftover Next.js/v0 files were moved out of the repository. In the Flutter version, the verify sheet uses `FilteringTextInputFormatter.digitsOnly` with `maxLength: 6`, and the button is enabled only when exactly 6 digits are entered, so the button and the check use the same rule.
+
+### Case 3: Activity times were eight hours off with Supabase
+
+**What the AI did:**  
+AI helped me write the Supabase data layer (`lib/data/supabase_store.dart`). My models save dates with `toIso8601String()`, which writes local time without a time zone offset.
+
+**What went wrong:**  
+Postgres stores `timestamptz` values and returns them in UTC. Because the saved times had no offset, the activity times shown in the app were eight hours off from Philippine time.
+
+**How I fixed it:**  
+Times are now converted to UTC with `toUtc()` before they are saved (in `_toRow`, for the `dateTime` and `lastSync` keys), and converted back with `toLocal()` when each model is read in `fromMap()`. I learned that a database and an app can disagree about time zones even when both look correct on their own.
 
 ## AI Usage Log
 
